@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
     public function showProfile(Request $request) {
     	$value = $request->session()->all();
     	if ($request->session()->has('users')) {

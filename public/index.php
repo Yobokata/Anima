@@ -49,8 +49,7 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |
 */
 	set_time_limit(3600 * 3);
-	//shell_exec('handbrake.exe -i "videos/Downloaded/Teekyuu_04.mkv" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned --preview 1 -o "D:/xampp/htdocs/Server/Anisite/public/videos/Encoded/Teekyuu_4_sub.mkv"');
-	shell_exec('ffmpeg -i ../archive/myvideofile.mp4 -f image2 -bt 20M -vf fps=1/45 thumbs/myfile%03d.jpg');
+	//shell_exec('handbrake.exe -i "F:/downloads/[CBM] Gurren Lagann 1-27 Complete (Dual Audio) [BDRip-720p-8bit]/[CBM]_Gurren_Lagann_-_01_-_Bust_Through_the_Heavens_With_Your_Drill!_[720p]_[D2E69407].mkv" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/Anisite/public/videos/Encoded/Tengen Toppa Gurren Lagann/Tengen Toppa Gurren Lagann 1.mkv"');
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 

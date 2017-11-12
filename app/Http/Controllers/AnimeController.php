@@ -8,11 +8,11 @@ use Session;
 
 class AnimeController extends Controller
 {
-	public function getEpisodeList($anime) {
-		$episodeList = DB::table('episodes')->join('anime', 'episodes.anime_id', '=', 'anime.id')->select('anime.name')->addSelect('episodes.number')->where('anime.name', '=', $anime)->orderBy('episodes.number')->get();
-		$anime = DB::table('anime')->where('name', '=', $anime)->first();
+	public function getEpisodeList($anime_id) {
+		$episodeList = DB::table('episodes')->join('anime', 'episodes.anime_id', '=', 'anime.id')->select('anime.name')->addSelect('episodes.number')->where('anime.id', '=', $anime_id)->orderBy('episodes.number')->get();
+		$anime = DB::table('anime')->where('id', '=', $anime_id)->first();
 		if ($anime != null) {
-		$anime->image = '../../' . $anime->image;
+			$anime->image = '../../' . $anime->image;
 		}
 		return view('anime')->with(['episodeList' => $episodeList, 'anime' => $anime]);
 	}

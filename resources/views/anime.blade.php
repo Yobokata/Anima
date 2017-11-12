@@ -18,7 +18,7 @@
 	<div class="card list">
 		<ul class="episode list-group list-group-flush">
 		@forelse ($episodeList as $episode)
-			<li class="list-group-item"><a href="{{ url('watch/' . $episode->name .'/' . $episode->number) }}" />{{ 'Episode ' . $episode->number }}</a></li>
+			<li class="list-group-item"><a href="{{ url('watch/' . $anime->id .'/' . $episode->number) }}" />{{ 'Episode ' . $episode->number }}</a></li>
 		@empty
 			@if($anime != null)
 			<li class="list-group-item">No episodes</li>

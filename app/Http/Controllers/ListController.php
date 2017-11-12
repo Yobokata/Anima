@@ -9,7 +9,7 @@ class ListController extends Controller
 {
 
 	public function getAnimeList() {
-		$animeList = DB::table('anime')	->select('name')->addSelect('image')->distinct()->orderBy('name')->get();
+		$animeList = DB::table('anime')->distinct()->orderBy('name')->paginate(20);
 		return view('list')->with('list', $animeList);
 	}
 }

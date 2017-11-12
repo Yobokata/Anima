@@ -18,8 +18,8 @@ Route::get('/about', 'UserController@showProfile');
 Route::get('/download/{anime}', 'AnimeController@insertAnime');
 
 Route::get('list', 'ListController@getAnimeList');
-Route::get('watch/{anime}/{episode}', 'EpisodeController@getEpisode');
-Route::get('anime/{anime}', 'AnimeController@getEpisodeList');
+Route::get('watch/{anime_id}/{episode}', 'EpisodeController@getEpisode');
+Route::get('anime/{anime_id}', 'AnimeController@getEpisodeList');
 
 Auth::routes();
 
