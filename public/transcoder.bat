@@ -1,0 +1,1 @@
+handbrake.exe -i "videos/Teekyuu_23.mkv" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "videos/Teekyuu_23_sub.mkv"
