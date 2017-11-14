@@ -18,6 +18,7 @@ class CreateEpisodeTable extends Migration
             $table->integer('anime_id')->references('id')->on('anime');
             $table->integer('number');
             $table->string('extension');
+            $table->boolean('bad_subs');
             $table->timestamps();
         });
     }

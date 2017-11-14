@@ -16,7 +16,7 @@ class CreateAnimeTable extends Migration
         Schema::create('anime', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('image')->nullable();
+            $table->string('alt_name')->nullable();
             $table->timestamps();
         });
     }
