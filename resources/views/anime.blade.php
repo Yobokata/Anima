@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="card cover">
 		@if($anime != null)
-			<img src="{{ $anime->image }}" />
+			<img src="../images/covers/{{ $anime->id }}.png" />
 		@else
 			Anime does not exist or has not been added yet
 		@endif

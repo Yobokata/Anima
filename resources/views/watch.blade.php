@@ -6,17 +6,21 @@
 		<div class="panel-body">
 			@isset($video)
 			<video controls  type="video/webm">
-				<source src="../../../videos/Encoded/{{ $video->name . '/' . $video->name . '_' . $video->number . '_sub.' . $video->extension}}">
+				<!-- gets anime id instead of episode id -->
+				<source src="../../../videos/{{ $video->anime_id . '/' . $video->id . '.' . $video->extension}}">
 				Your browser does not support HTML5 video.
 			</video>
 			<a class="nextEpisode" href="{{ ($video->number - 1) }}">Previous episode</a>
 			<a class="nextEpisode" href="{{ ($video->number + 1) }}">Next episode</a>
+			@if($video->bad_subs)
+			<p>Warning: Bad subs</p>
+			@endif
 			@endisset
 			@empty($video)
 			<p>Invalid url</p>
 			@endempty
 		</div>
 	</div>
-	<!--<script src="../../../js/loadNextEpisode.js"></script>-->
+	<script src="../../../js/videoControls.js"></script>
 </div>
 @endsection

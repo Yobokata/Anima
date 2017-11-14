@@ -8,13 +8,9 @@
 		@forelse ($list as $anime)
 			<li class="list-group-item">
 			<a href="{{ url('anime/' . $anime->id) }}" />
-			@if ($anime->image != null)
-				<img src="{{ $anime->image }}" />
-			@else
-				<img src="images/no_image.png" />
-			@endif
-			<div class="overlay"></div>
-			<p class="description">{{ $anime->name }}</p>
+				<img src="images/covers/{{ $anime->id }}.png" />
+				<div class="overlay"></div>
+				<p class="description">{{ $anime->name }}</p>
 			</a>
 			</li>
 		@empty
