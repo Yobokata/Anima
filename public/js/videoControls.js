@@ -40,6 +40,13 @@ $(document).ready(function() {
 				break;
 		}
 	});
+	$(video).click(function() {
+		if (currentVideo.paused) {
+			currentVideo.play();
+		} else {
+			currentVideo.pause();
+		}
+	});
 	$(video).dblclick(function() {
 		if (!windowScreen) {
 			video.css({

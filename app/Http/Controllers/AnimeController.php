@@ -44,6 +44,7 @@ class AnimeController extends Controller
 
 	public function insertAnime(Request $request, $anime) {
 		//if (DB::table('anime').select('name')->) //check if the anime already exists
+		//DB::beginTransaction();
 		DB::table('anime')->insert(['name' => $anime]);
 		$animeId = DB::getPdo()->lastInsertId();
 
@@ -72,8 +73,12 @@ class AnimeController extends Controller
 				//Encode episode
 				//shell_exec('handbrake.exe -i "' . $episode . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/Anisite/public/videos/' . $animeId . '/' . $episodeId . '.mkv"');
 			}
+			//DB::commit();
 			//shell_exec('handbrake.exe -i "F:/downloads/[CBM] Gurren Lagann 1-27 Complete (Dual Audio) [BDRip-720p-8bit]/[CBM]_Gurren_Lagann_-_01_-_Bust_Through_the_Heavens_With_Your_Drill!_[720p]_[D2E69407].mkv" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/Anisite/public/videos/Encoded/Tengen Toppa Gurren Lagann/Tengen Toppa Gurren Lagann 1.mkv"');
-		}
+		} //else {
+			//find a better way
+			//DB::rollBack();
+		//}
 		return view('about');
 	}
 }
