@@ -20,6 +20,7 @@ html {
 .navbar {
 	background: rgb(43, 45, 48);
 	border-style: none;
+	position: relative!important;
 }
 
 .navbar-brand {

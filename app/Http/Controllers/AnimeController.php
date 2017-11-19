@@ -43,10 +43,14 @@ class AnimeController extends Controller
 	}
 
 	public function insertAnime(Request $request, $anime) {
-		//if (DB::table('anime').select('name')->) //check if the anime already exists
-		//DB::beginTransaction();
-		DB::table('anime')->insert(['name' => $anime]);
-		$animeId = DB::getPdo()->lastInsertId();
+		/*//DB::beginTransaction();
+		$checkAnime = DB::table('anime')->where('name', '=', $anime)->first();
+		if ($checkAnime == null) {
+			DB::table('anime')->insert(['name' => $anime]);
+			$animeId = DB::getPdo()->lastInsertId();
+		} else {
+			$animeId = $checkAnime->id;
+		}
 
 		//Create cover if it doesn't exist already
 		if(!file_exists('images/covers/' . $animeId . '.png')) {	
@@ -64,21 +68,24 @@ class AnimeController extends Controller
 				//Get episode number from file
 				$fileName = basename($episode);
 				preg_match('/- \d{1,5}/', $fileName, $matches);
-				$episodeNumber = substr($matches[0], 2);
+				$episodeNumber = substr(end($matches), 2);
 
+				$checkEpisode = DB::table('episodes')->where('anime_id', '=', $animeId)->where('number', '=', $episodeNumber)->first();
+				if ($checkEpisode == null) {
 				//Insert episode into table
-				DB::table('episodes')->insert(['anime_id' => $animeId, 'number' => $episodeNumber, 'extension' => 'mkv']);
-				$episodeId = DB::getPdo()->lastInsertId();
+					DB::table('episodes')->insert(['anime_id' => $animeId, 'number' => $episodeNumber, 'extension' => 'mkv']);
+					$episodeId = DB::getPdo()->lastInsertId();
+				} else {
+					$episodeId = $checkEpisode->id;
+				}
 				//this reencodes all the episodes always so find another solution (probably with file upload?)
 				//Encode episode
-				//shell_exec('handbrake.exe -i "' . $episode . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/Anisite/public/videos/' . $animeId . '/' . $episodeId . '.mkv"');
+				//shell_exec('handbrake.exe -i "' . $episode . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/Anima/public/videos/' . $animeId . '/' . $episodeId . '.mkv"');
 			}
 			//DB::commit();
-			//shell_exec('handbrake.exe -i "F:/downloads/[CBM] Gurren Lagann 1-27 Complete (Dual Audio) [BDRip-720p-8bit]/[CBM]_Gurren_Lagann_-_01_-_Bust_Through_the_Heavens_With_Your_Drill!_[720p]_[D2E69407].mkv" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/Anisite/public/videos/Encoded/Tengen Toppa Gurren Lagann/Tengen Toppa Gurren Lagann 1.mkv"');
 		} //else {
-			//find a better way
 			//DB::rollBack();
-		//}
+		//}*/
 		return view('about');
 	}
 }
