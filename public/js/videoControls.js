@@ -41,6 +41,7 @@ function changeFillWindowState(state) {
 }
 
 $(document).ready(function() {
+	var underlay = $('.underlay');
 	var video = $('video');
 	var currentVideo = video[0];
 	var windowScreen = false;
@@ -86,6 +87,18 @@ $(document).ready(function() {
 	});
 	$(video).dblclick(function() {
 		windowScreen = changeFillWindowState(windowScreen);
+	});
+	$(window).resize(function() {
+		if (windowScreen) {
+			$(underlay).css({
+				'width': $(window).width(), 
+				'height': $(window).height()
+			});
+			$(video).css({
+				'width': $(window).width(), 
+				'height': $(window).height()
+			});
+		}
 	});
 	var scrollPos = 0;
 	var timer;
