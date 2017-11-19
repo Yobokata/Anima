@@ -10,6 +10,7 @@
 				<source src="../../../videos/{{ $video->anime_id . '/' . $video->id . '.' . $video->extension}}">
 				Your browser does not support HTML5 video.
 			</video>
+			<div class="underlay"></div>
 			<a class="nextEpisode" href="{{ ($video->number - 1) }}">Previous episode</a>
 			<a class="nextEpisode" href="{{ ($video->number + 1) }}">Next episode</a>
 			@if($video->bad_subs)

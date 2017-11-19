@@ -162,11 +162,20 @@ ul.episode li.list-group-item a:hover {
 	color: white;
 }
 
+/*Video*/
 video {
 	float: left;
 	width: 100%;
+	z-index: 1;
 }
 
 video.video-controls {
     -webkit-filter: invert(0.935) hue-rotate(150deg);
 }
+
+.underlay {
+	display: none;
+	background: black;
+	z-index: 0;
+}
+/*End video*/
