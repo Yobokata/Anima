@@ -52,10 +52,13 @@ class AnimeController extends Controller
 	}
 
 	public function insertAnime(Request $request, $anime_name) {
-		/* //DB::beginTransaction();
+		if (!\Auth::user()->is_admin) {
+			return view('about');
+		}
+		 //DB::beginTransaction();
 		$anime = DB::table('anime')->where('name', '=', $anime_name)->first();
 		if ($anime == null) {
-			DB::table('anime')->insert(['name' => $anime]);
+			DB::table('anime')->insert(['name' => $anime_name]);
 			//$animeId = DB::getPdo()->lastInsertId();
 			$anime = DB::table('anime')->where('name', '=', $anime_name)->first();
 			$animeId = $anime->id;
@@ -66,10 +69,12 @@ class AnimeController extends Controller
 		//Create cover if it doesn't exist already
 		if(!file_exists('images/covers/' . $animeId . '.png')) {	
 			$cover_url = $this->getAnimeCoverUrl($anime_name);
-			if ($cover_url == "") {
+			if ($cover_url == "" && $anime->alt_name != "") {
 				$cover_url = $this->getAnimeCoverUrl($anime->alt_name);
 			}
-			file_put_contents('images/covers/' . $animeId . '.png', $cover_url, 'r');
+			if ($cover_url != "") {
+				file_put_contents('images/covers/' . $animeId . '.png', $cover_url, 'r');
+			}
 		}
 		if (!file_exists('videos/' . $animeId)) {
 			mkdir('videos/' . $animeId);
