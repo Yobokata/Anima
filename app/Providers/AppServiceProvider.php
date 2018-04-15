@@ -18,10 +18,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        //Blade::directive('admin', function() {
-        //    if (Session::get(''))
-        //});
     }
 
     /**

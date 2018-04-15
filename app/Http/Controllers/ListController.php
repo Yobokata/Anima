@@ -7,7 +7,11 @@ use DB;
 
 class ListController extends Controller
 {
-
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
 	public function getAnimeList() {
 		$animeList = DB::table('anime')->distinct()->orderBy('name')->paginate(20);
 		return view('list')->with('list', $animeList);

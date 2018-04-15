@@ -39,33 +39,35 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/about') }}">About</a></li>
+                        @auth
+                            <li><a href="{{ url('/list') }}">List</a></li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <!--<li><a href="{{ route('register') }}">Register</a></li>-->
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
                         @else
-                            <li><a href="{{ url('list') }}">List</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    @role('admin')
-                                    <li></li>
-                                    @endrole
+                                    @if(Auth::user()->is_admin)
+                                        <li><a href="#">user is admin</a></li>
+                                    @endif
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>

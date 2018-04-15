@@ -45,15 +45,6 @@ $(document).ready(function() {
 	var video = $('video');
 	var currentVideo = video[0];
 	var windowScreen = false;
-	$(document).keyup(function(e) {
-		if (e.keyCode == keys.space) {
-			if (currentVideo.paused) {
-				currentVideo.play();
-			} else {
-				currentVideo.pause();
-			}
-		}
-	});
 	$(document).keydown(function(e) {
 		switch(e.keyCode) {
 			case keys.left:
@@ -71,6 +62,13 @@ $(document).ready(function() {
 			case keys.escape:
 				if (windowScreen) {
 					windowScreen = changeFillWindowState(windowScreen);
+				}
+				break;
+			case keys.space:
+				if (currentVideo.paused) {
+					currentVideo.play();
+				} else {
+					currentVideo.pause();
 				}
 				break;
 			case keys.f:

@@ -13,12 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('anime');
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
-            $table->integer('role_id')->references('id')->on('roles');
+            $table->boolean('is_admin');
             $table->rememberToken();
             $table->timestamps();
         });

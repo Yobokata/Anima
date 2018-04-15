@@ -11,15 +11,16 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/about', 'UserController@showProfile');
+Route::get('/', 'HomeController@home');
+Route::get('/home', 'HomeController@home');
+Route::get('/about', 'HomeController@about');
 
+
+Route::get('/list', 'ListController@getAnimeList');
+Route::get('/watch/{anime_id}/{episode}', 'EpisodeController@getEpisode');
+Route::get('/anime/{anime_id}', 'AnimeController@getEpisodeList');
+
+Route::get('/encode', 'EncodeController@getEncodingPage');
 Route::get('/download/{anime}', 'AnimeController@insertAnime');
 
-Route::get('list', 'ListController@getAnimeList');
-Route::get('watch/{anime_id}/{episode}', 'EpisodeController@getEpisode');
-Route::get('anime/{anime_id}', 'AnimeController@getEpisodeList');
-
 Auth::routes();
-

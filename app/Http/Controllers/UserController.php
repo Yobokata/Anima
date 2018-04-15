@@ -12,11 +12,10 @@ class UserController extends Controller
 	}
 	
     public function showProfile(Request $request) {
-    	$value = $request->session()->all();
-    	if ($request->session()->has('users')) {
-    		
-    	echo "<script>console.log('" . var_dump($value) . "')</script>";
-    	}
+    	//if (\Auth::check()) {
+			//echo "<script>console.log('" . var_dump($value) . "')</script>";
+			//return view('profile');
+    	//}
     	return view('about');
     }
 }
