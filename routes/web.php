@@ -13,14 +13,16 @@
 
 Route::get('/', 'HomeController@home');
 Route::get('/home', 'HomeController@home');
-Route::get('/about', 'HomeController@about');
+Route::get('/about', function() {
+    return view('about');
+});
 
 
-Route::get('/list', 'ListController@getAnimeList');
-Route::get('/watch/{anime_id}/{episode}', 'EpisodeController@getEpisode');
+Route::get('/list', 'AnimeController@getAnimeList');
 Route::get('/anime/{anime_id}', 'AnimeController@getEpisodeList');
+Route::get('/watch/{anime_id}/{episode}', 'AnimeController@getEpisode');
 
 Route::get('/encode', 'EncodeController@getEncodingPage');
-Route::get('/download/{anime}', 'AnimeController@insertAnime');
+Route::get('/download/{anime}', 'EncodeController@insertAnime');
 
 Auth::routes();

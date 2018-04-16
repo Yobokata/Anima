@@ -4,6 +4,7 @@
 <div class="container">
 	<div class="card cover">
 		@if($anime != null)
+			<!-- need to check if the cover exists here -->
 			<img src="../images/covers/{{ $anime->id }}.png" />
 		@else
 			Anime does not exist or has not been added yet
