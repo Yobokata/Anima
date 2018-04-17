@@ -1,0 +1,179 @@
+html {
+	background: rgb(52,58,64);
+}
+
+#app {
+	background: rgb(52,58,64);
+}
+
+.navbar {
+	background: rgb(43, 45, 48);
+	border-style: none;
+	position: relative!important;
+}
+
+.navbar-brand {
+	color: rgb(191, 197, 204)!important;
+}
+
+.navbar-brand:hover {
+	color: white!important;
+}
+
+ul.nav li a {
+	color: rgb(191, 197, 204)!important;
+}
+
+.dropdown:hover {
+	background: rgb(35, 36, 38);
+}
+
+ul li.open a.dropdown-toggle {
+	background: rgb(35, 36, 38)!important;
+}
+
+ul li ul.dropdown-menu {
+	background: rgb(43, 45, 48)!important;
+}
+
+ul li ul.dropdown-menu a:hover {
+	background: rgb(35, 36, 38)!important;
+}
+
+.card-header {
+	color: white;
+}
+
+/*Animelist*/
+ul.anime {
+	float: left;
+	width: 100%!important;
+	text-align: center;
+	padding: 10px;
+}
+
+ul.anime li.list-group-item {
+	background: none!important;
+	border-color: rgb(43, 45, 48);
+	width: 120px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: none;
+	height: auto;
+    overflow: hidden;
+    display: inline-block;
+}
+
+ul.anime li.list-group-item img {
+	width: 120px;
+	height: 150px;
+}
+
+ul.anime li.list-group-item .overlay {
+	position: absolute!important;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0;
+}
+
+ul.anime li.list-group-item p.description {
+	position: absolute!important;
+	top: 20%;
+	left: 0;
+	right: 0;
+	opacity: 0;
+}
+
+ul.anime li.list-group-item a {
+	text-decoration: none;
+	color: rgb(191, 197, 204);
+}
+
+ul.anime li.list-group-item a:hover > p.description {
+	color: white;
+	opacity: 1;
+}
+
+ul.anime li.list-group-item a:hover > .overlay {
+	opacity: 0.5;
+}
+/*End animelist*/
+
+/*Episodelist*/
+.card.cover {
+	float: left;
+	width: 20%;
+}
+
+.card.cover img {
+	width: 100%;
+	min-height: 150px;
+}
+
+.card-header.name {
+	float: left;
+	width: 80%;
+	padding: 20px;
+}
+
+ul.episode li.list-group-item {
+	float: left;
+	background: rgb(62, 67, 76)!important;
+	border-color: rgb(43, 45, 48);
+	width: 80%;
+	border-radius: 0px;
+}
+
+ul.episode li.list-group-item a {
+	text-decoration: none;
+	color: rgb(191, 197, 204);
+}
+
+ul.episode li.list-group-item a:hover {
+	color: white;
+}
+/*End episodelist*/
+
+.panel .panel-heading {
+	background: rgb(43, 45, 48)!important;
+	border-style: none;
+	color: white;
+}
+
+.panel {
+	background: rgb(62, 67, 76)!important;
+	border-color: rgb(43, 45, 48)!important;
+	color: white;
+}
+
+/*Video*/
+.episode-title {
+    float: left;
+}
+
+video {
+	float: left;
+	width: 100%;
+	z-index: 1;
+}
+
+video.video-controls {
+    filter: invert(0.935) hue-rotate(150deg);
+    -webkit-filter: invert(0.935) hue-rotate(150deg);
+}
+
+.underlay {
+    float: left;
+	display: none;
+	background: black;
+	z-index: 0;
+}
+
+.change-episode {
+    float: left;
+}
+/*End video*/

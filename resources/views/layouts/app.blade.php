@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link rel="shortcut icon" type="image/x-icon" href="images/no_image.png" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
