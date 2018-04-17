@@ -16,9 +16,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function home() {
-        if (\Auth::check()) {
-            return view('home');
-        }
-        return view('about');
+        return view('home');
     }
 }

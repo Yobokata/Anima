@@ -17,7 +17,6 @@ Route::get('/about', function() {
     return view('about');
 });
 
-
 Route::get('/list', 'AnimeController@getAnimeList');
 Route::get('/anime/{anime_id}', 'AnimeController@getEpisodeList');
 Route::get('/watch/{anime_id}/{episode}', 'AnimeController@getEpisode');
