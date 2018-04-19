@@ -14,6 +14,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/no_image.png" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.2.0/plyr.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -79,11 +81,12 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+	<script src="https://cdn.plyr.io/3.2.0/plyr.js"></script>
+    <script>const player = new Plyr('#player');</script>
 </body>
 </html>

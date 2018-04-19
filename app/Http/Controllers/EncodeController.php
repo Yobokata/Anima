@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class EncodeController extends Controller
 {
@@ -21,6 +22,7 @@ class EncodeController extends Controller
 		if (!\Auth::user()->is_admin) {
 			return view('about');
 		}
+		//remove use DB and use the models
 		 //DB::beginTransaction();
 		$anime = DB::table('anime')->where('name', '=', $anime_name)->first();
 		if ($anime == null) {
@@ -50,6 +52,9 @@ class EncodeController extends Controller
 
 			//Get files in folder with anime name
 			$list = glob("F:/downloads/Seasonal/*" . $anime_name . "*.mkv");
+			if (empty($list)) {
+				$list = glob("F:/downloads/Seasonal/*" . $anime->alt_name . "*.mkv");				
+			}
 			foreach($list as $episode) {
 				//Get episode number from file
 				$fileName = basename($episode);

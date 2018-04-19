@@ -24,6 +24,10 @@ ul.nav li a {
 	color: rgb(191, 197, 204)!important;
 }
 
+ul.nav li a:hover {
+	background-color: rgb(35, 36, 38)!important;
+}
+
 .dropdown:hover {
 	background: rgb(35, 36, 38);
 }
@@ -152,28 +156,32 @@ ul.episode li.list-group-item a:hover {
 
 /*Video*/
 .episode-title {
-    float: left;
-}
-
-video {
 	float: left;
-	width: 100%;
-	z-index: 1;
+	padding: 10px;
 }
-
+/*
 video.video-controls {
     filter: invert(0.935) hue-rotate(150deg);
     -webkit-filter: invert(0.935) hue-rotate(150deg);
 }
-
-.underlay {
-    float: left;
-	display: none;
-	background: black;
-	z-index: 0;
+*/
+.plyr {
+	float: left;
+	width: 100%;
 }
 
 .change-episode {
     float: left;
+}
+
+.change-episode a {
+	float: left;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+}
+
+.change-episode a:hover {
+	color: rgb(191, 197, 204);
 }
 /*End video*/
