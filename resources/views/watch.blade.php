@@ -6,6 +6,7 @@
 		<div class="card-header episode-title">{{ $anime }} - Episode {{ $video->number }}</div>
 		<video id="player" playsinline controls>
 			<source src="../../../videos/{{ $video->anime_id . '/' . $video->id . '.' . $video->extension }}" type="video/webm">
+			<track kind="captions" label="English captions" src="../../../videos/{{ $video->anime_id . '/' . $video->id . '.srt' }}" srclang="en" default>
 			Your browser does not support HTML5 video.
 		</video>
 		<p class="change-episode">
@@ -18,7 +19,5 @@
 	@else
 		<p><center>Invalid url<center></p>
 	@endif
-
-
 </div>
 @endsection

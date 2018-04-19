@@ -21,7 +21,7 @@ Route::get('/list', 'AnimeController@getAnimeList');
 Route::get('/anime/{anime_id}', 'AnimeController@getEpisodeList');
 Route::get('/watch/{anime_id}/{episode}', 'AnimeController@getEpisode');
 
-Route::get('/encode', 'EncodeController@getEncodingPage');
-Route::get('/download/{anime}', 'EncodeController@insertAnime');
+Route::get('/transcode', 'TranscodeController@getTranscodingPage');
+Route::get('/download/{anime}', 'TranscodeController@transcode');
 
 Auth::routes();
