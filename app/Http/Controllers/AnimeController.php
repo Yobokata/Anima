@@ -27,6 +27,6 @@ class AnimeController extends Controller
 		$anime = Anime::where('id', '=', $anime_id)->first();
 		$episodes = Episode::where('anime_id', '=', $anime_id)->get();
 		$video = $episodes->where('number', '=', $episode)->first();
-		return view('watch')->with(['anime' => $anime->name, 'video' => $video, 'lastEpisode' => $episodes->max('number')]);
+		return view('watch')->with(['anime' => $anime->name, 'video' => $video, 'startingEpisode' => $episodes->min('number'), 'endingEpisode' => $episodes->max('number')]);
     }
 }

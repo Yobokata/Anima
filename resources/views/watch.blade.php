@@ -10,10 +10,10 @@
 			Your browser does not support HTML5 video.
 		</video>
 		<p class="change-episode">
-			@if($video->number > 1)
+			@if($video->number > $startingEpisode)
 				<a href="{{ ($video->number - 1) }}">Previous episode</a>
 			@endif
-			@if($video->number < $lastEpisode)
+			@if($video->number < $endingEpisode)
 				<a href="{{ ($video->number + 1) }}">Next episode</a>
 			@endif
 		</p>
