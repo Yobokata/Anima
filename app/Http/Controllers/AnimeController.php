@@ -13,14 +13,14 @@ class AnimeController extends Controller
 	}
 	
 	public function getAnimeList() {
-		$animeList = Anime::orderBy('name')->get();
-		return view('list')->with('list', $animeList);
+		$anime_list = Anime::orderBy('name')->get();
+		return view('list')->with('list', $anime_list);
 	}
 	
 	public function getEpisodeList($anime_id) {
 		$anime = Anime::where('id', '=', $anime_id)->first();
-		$episodeList = Episode::where('episodes.anime_id', '=', $anime_id)->orderBy('episodes.number')->get();
-		return view('anime')->with(['episodeList' => $episodeList, 'anime' => $anime]);
+		$episode_list = Episode::where('episodes.anime_id', '=', $anime_id)->orderBy('episodes.number')->get();
+		return view('anime')->with(['episodeList' => $episode_list, 'anime' => $anime]);
 	}
     
 	public function getEpisode($anime_id, $episode) {
