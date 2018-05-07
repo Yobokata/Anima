@@ -33,10 +33,10 @@ class TranscodeController extends Controller
 		if (empty($file_paths)) {
 			$file_paths = glob("F:/downloads/Seasonal/*" . $anime->alt_name . "*.mkv");				
 		}
-		foreach ($file_paths as $filePath) {
-			$episode_id = $this->getEpisodeData($filePath, $anime->id);
+		foreach ($file_paths as $file_path) {
+			$episode_id = $this->getEpisodeData($file_path, $anime->id);
 			//Transcode current file
-			shell_exec('handbrake.exe -i "' . $filePath . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episode_id . '.mkv"');
+			shell_exec('handbrake.exe -i "' . $file_path . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episode_id . '.mkv"');
 		}
 		return view('transcode');
 	}
