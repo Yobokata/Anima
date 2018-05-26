@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => $anime->name . ' (' . $anime->alt_name . ')' ])
 
 @section('content')
 <div class="container">
