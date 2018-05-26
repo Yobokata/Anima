@@ -29,14 +29,14 @@ class TranscodeController extends Controller
 			mkdir('videos/' . $anime->id);
 		}
 		set_time_limit(3600 * 3);
-		$filePaths = glob("F:/downloads/Seasonal/*" . $anime->name . "*.mkv");
-		if (empty($filePaths)) {
-			$filePaths = glob("F:/downloads/Seasonal/*" . $anime->alt_name . "*.mkv");				
+		$file_paths = glob("F:/downloads/Seasonal/*" . $anime->name . "*.mkv");
+		if (empty($file_paths)) {
+			$file_paths = glob("F:/downloads/Seasonal/*" . $anime->alt_name . "*.mkv");				
 		}
-		foreach ($filePaths as $filePath) {
-			$episodeId = $this->getEpisodeData($filePath, $anime->id);
+		foreach ($file_paths as $file_path) {
+			$episode_id = $this->getEpisodeData($file_path, $anime->id);
 			//Transcode current file
-			shell_exec('handbrake.exe -i "' . $filePath . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episodeId . '.mkv"');
+			shell_exec('handbrake.exe -i "' . $file_path . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episode_id . '.mkv"');
 		}
 		return view('transcode');
 	}
@@ -67,26 +67,26 @@ class TranscodeController extends Controller
     
     private function getAnimeCoverUrl($anime) {
 		$html = file_get_contents('https://myanimelist.net/anime.php?q=' . $anime);
-		$imgNameIndex = strpos($html, 'alt="' . $anime . '"');
-		if ($imgNameIndex === -1) {
+		$img_name_index = strpos($html, 'alt="' . $anime . '"');
+		if ($img_name_index === -1) {
 			//die('image not found');
 			return "";
 		}
-		$html = substr($html, $imgNameIndex);
+		$html = substr($html, $img_name_index);
 
-		$dataSrc = strpos($html, 'data-src="');
-		if ($dataSrc === -1) {
+		$data_src = strpos($html, 'data-src="');
+		if ($data_src === -1) {
 			//die('data-src not found');
 			return "";
 		}
-		$dataSrc += strlen('data-src="');
-		$srcEnd = strpos($html, '?');
-		if ($srcEnd === -1) {
+		$data_src += strlen('data-src="');
+		$src_end = strpos($html, '?');
+		if ($src_end === -1) {
 			//die('data-src unexpected format');
 			return "";
 		}
-		$srcEnd -= $dataSrc;
-		$url = substr($html, $dataSrc, $srcEnd);
+		$src_end -= $data_src;
+		$url = substr($html, $data_src, $src_end);
 		$parts = explode('/', $url);
 		if (count($parts) < 5) {
 			//die('unexpected url: ' . $url);
@@ -97,18 +97,18 @@ class TranscodeController extends Controller
 		return implode('/', $parts);
     }
 
-	private function getEpisodeData($filePath, $animeId) {
+	private function getEpisodeData($file_path, $anime_id) {
 		//Get episode number from file path
-		$fileName = basename($filePath);
+		$fileName = basename($file_path);
 		preg_match('/- \d{1,5}/', $fileName, $matches);
-		$episodeNumber = substr(end($matches), 2);
+		$episode_number = substr(end($matches), 2);
 
-		$episode = Episode::where('anime_id', '=', $animeId)->where('number', '=', $episodeNumber)->first();
+		$episode = Episode::where('anime_id', '=', $anime_id)->where('number', '=', $episode_number)->first();
 		if ($episode == null) {
 			//Insert episode into table
 			$episode = new Episode;
-			$episode->anime_id = $animeId;
-			$episode->number = $episodeNumber;
+			$episode->anime_id = $anime_id;
+			$episode->number = $episode_number;
 			$episode->extension = 'mkv';
 			$episode->save();
 		}
