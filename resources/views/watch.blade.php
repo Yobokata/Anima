@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => $anime . ' Episode ' . $video->number])
+@extends('layouts.app', ['title' => $anime . ' - Episode ' . $video->number])
 
 @section('content')
 <div class="container">

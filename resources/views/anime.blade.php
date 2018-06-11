@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => $anime->name . ' (' . $anime->alt_name . ')' ])
+@extends('layouts.app', ['title' => !isset($anime->alt_name) ? $anime->name : $anime->name . ' (' . $anime->alt_name . ')'])
 
 @section('content')
 <div class="container">
