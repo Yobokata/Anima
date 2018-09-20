@@ -14,15 +14,17 @@ class TranscodeController extends Controller
     
     public function getTranscodingPage() {
         if (\Auth::user()->is_admin) {
-            return view('transcode');
+			$anime_list = Anime::select('name')->orderBy('name')->get();
+            return view('transcode')->with('anime_list', $anime_list);
         }
         return view('about');
     }
 
-	public function transcode(Request $request, $anime_name) {
+	public function transcode(Request $request) {
 		if (!\Auth::user()->is_admin) {
 			return view('about');
 		}
+		$anime_name = $request->input('anime_name');
 		$anime = $this->getAnime($anime_name);
 		$this->createCover($anime);
 		if (!file_exists('videos/' . $anime->id)) {
@@ -36,9 +38,17 @@ class TranscodeController extends Controller
 		foreach ($file_paths as $file_path) {
 			$episode_id = $this->getEpisodeData($file_path, $anime->id);
 			//Transcode current file
-			shell_exec('handbrake.exe -i "' . $file_path . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episode_id . '.mkv"');
+			//shell_exec('handbrake.exe -i "' . $file_path . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episode_id . '.mkv"');
+			$cmd = 'handbrake.exe -i "' . $file_path . '" --audio-lang-list "jpn" --first-audio --aencoder "copy" --subtitle-lang-list "eng" --first-subtitle --subtitle-burned -o "D:/xampp/htdocs/Server/public/videos/' . $anime->id . '/' . $episode_id . '.mkv"';
+
+			while (@ ob_end_flush());
+			$proc = popen($cmd, 'r');
+			while (!feof($proc)) {
+				echo fgets($proc) . "<br />";
+				@ flush();
+			}
+			pclose($proc);
 		}
-		return view('transcode');
 	}
 
 	private function getAnime($anime_name) {
@@ -61,7 +71,7 @@ class TranscodeController extends Controller
 			$cover_url = $this->getAnimeCoverUrl($anime->alt_name);
 		}
 		if ($cover_url != "") {
-			file_put_contents('images/covers/' . $anime->id . '.png', $cover_url, 'r');
+			file_put_contents('images/covers/' . $anime->id . '.png', $cover_url, LOCK_EX);
 		}
 	}
     

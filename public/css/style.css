@@ -183,3 +183,25 @@ video.video-controls {
 	color: rgb(191, 197, 204);
 }
 /*End video*/
+
+/*begin transcode page*/
+.input-group .form-control {
+	border-radius: 0px!important;
+}
+
+.input-group .btn-warning {
+	border-radius: 0px!important;
+}
+
+.terminal {
+	float: left;
+	padding: 10px;
+	background-color: black;
+	width: 100%;
+	height: 500px;
+	color: white;
+	font: courier;
+	overflow-y: scroll;
+	white-space: pre-line;
+}
+/*end transcode page*/
